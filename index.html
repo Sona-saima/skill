@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Parking Lot Management System</h1>
+    </header>
+    
+    <div class="form-container">
+        <h2>Fill up!</h2>
+        
+        <form id="parkingform">
+            <label for="firstname">Name :</label>
+            <input type="text" id="firstname" name="firstname" required><br>
+            
+            <label for="vechiclename">Vehicle Name :</label>
+            <input type="text" id="vechiclename" name="vechiclename" required><br>
+            
+            <label for="carplate">Enter Vehicle Plate Number :</label>
+            <input type="text" id="carplate" name="carplate" required><br>
+            
+            <label for="Timein">Time In :</label>
+            <input type="time" id="Timein" name="Timein" required>
+            
+            <label for="timeout">Time Out :</label>
+            <input type="time" id="timeout" name="timeout" required><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+
+    <script>
+        document.getElementById('parkingform').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+
+            const name = document.getElementById('firstname').value;
+            const vehicleName = document.getElementById('vechiclename').value;
+            const carPlate = document.getElementById('carplate').value;
+            const timeIn = document.getElementById('Timein').value;
+            const timeOut = document.getElementById('timeout').value;
+            
+
+            const record = {
+                name,
+                vehicleName,
+                carPlate,
+                timeIn,
+                timeOut
+            };
+
+
+            let records = JSON.parse(localStorage.getItem('parkingRecords')) || [];
+
+
+            records.push(record);
+
+            
+            localStorage.setItem('parkingRecords', JSON.stringify(records));
+
+           
+            window.location.href = 'record.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Records</title>
+    <link rel="stylesheet" href="record.css">
+</head>
+<body>
+    <h2>Parking Records</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Vehicle Name</th>
+            <th>Vehicle Plate Number</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+        </tr>
+        <tbody id="recordsTableBody">
+        </tbody>
+    </table>
+
+    <script>
+
+        const records = JSON.parse(localStorage.getItem('parkingRecords')) || [];
+
+   
+        const tableBody = document.getElementById('recordsTableBody');
+
+       
+        records.forEach(record => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${record.name}</td>
+                <td>${record.vehicleName}</td>
+                <td>${record.carPlate}</td>
+                <td>${record.timeIn}</td>
+                <td>${record.timeOut}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
